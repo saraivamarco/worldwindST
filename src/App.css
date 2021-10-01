@@ -8,7 +8,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,21 +21,7 @@
   color: #61dafb;
 }
 
-#table-wrapper  {
-  position:relative;
-  width:90%;
-  overflow:auto;  
-  margin: 5px;
-}
+#root {
+  background-color: black;
 
-#table-scroll  {
-  height:200px;
-  overflow:auto;  
-  margin: 5px;
-}
-
-#table-wrapper table * {
-  background:gray;
-  color:black;
-  width: 150%;
 }
