@@ -19,6 +19,7 @@
     "react-bootstrap": "^2.0.0-beta.6",
     "react-cookie": "^4.1.1",
     "react-dom": "^17.0.2",
+    "react-gitignore": "^1.0.12",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "satellite.js": "^4.1.3",

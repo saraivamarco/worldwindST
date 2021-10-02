@@ -1,4 +1,7 @@
 import fetch from 'unfetch';
+import axios from 'axios';
+import {dummyData} from "./DummyData.js";
+import {dummyDataFull} from "./DummyDataFull.js";
 
 /**
  * SAMPLE REST SERVICE CONSUMER
@@ -22,3 +25,42 @@ export const getAllItems = () =>
         .then(checkStatus);
 
 
+//------
+  //https://www.space-track.org/documentation#howto-api_intro
+export const fetchLiveData = ({data, setData}) => {
+    const stdata = {
+      "identity": "marcoasilvapt@gmail.com",
+      "password": "Spacenuts2021!*",
+      "query": "https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/debris/limit/3"
+    }; //https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/DEBRIS
+  
+    const extra = {
+      withCredentials: true,
+      mode: 'no-cors',
+      credentials: 'same-origin',
+      headers: {
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS',
+        'Access-Control-Allow-Origin': 'http://localhost:3000', 
+        'Content-Type': 'application/json'
+      }
+    }
+  
+    axios.post("https://www.space-track.org/ajaxauth/login", stdata, extra).then(response => {
+      if(response.status === 200){
+        window.data = response.stdata;
+        setData(response.stdata);
+  
+        console.log(data);
+      }
+    }).catch(err => console.warn(err));
+  }
+
+
+  /**
+   * Dummmy data
+   */
+  export const fetchDummyData = () => {
+    window.data = dummyData;
+  } 
