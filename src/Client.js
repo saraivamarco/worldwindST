@@ -1,7 +1,6 @@
 import fetch from 'unfetch';
 import axios from 'axios';
 import {dummyData} from "./DummyData.js";
-import {dummyDataFull} from "./DummyDataFull.js";
 
 /**
  * SAMPLE REST SERVICE CONSUMER
