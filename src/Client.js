@@ -29,8 +29,8 @@ export const fetchLiveData = ({data, setData}) => {
     const stdata = {
       "identity": "marcoasilvapt@gmail.com",
       "password": "Spacedebris2021",
-      "query": "https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/debris/limit/10"
-    }; //https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/DEBRIS
+      "query": "https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/DEBRIS"
+    }; ///limit/1000
   
     const extra = {
       withCredentials: true,
