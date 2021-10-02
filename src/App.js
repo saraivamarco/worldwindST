@@ -11,13 +11,14 @@ import { fetchLiveData, fetchDummyData } from './Client';
  */
 
 function App() {
-  const [data, setData] = useState([]);
+  //const [data, setData] = useState([]);
+  // Create a WorldWindow for the canvas.
+  var wwd = new WorldWind.WorldWindow("canvasOne");
+  // Add a placemark
+  var placemarkLayer = new WorldWind.RenderableLayer("Placemark");
+  wwd.addLayer(placemarkLayer);
 
   useEffect(() => {
-
-    // Create a WorldWindow for the canvas.
-    var wwd = new WorldWind.WorldWindow("canvasOne");
-    
     // Add some image layers to the WorldWindow's globe.
     wwd.addLayer(new WorldWind.BMNGOneImageLayer());
     wwd.addLayer(new WorldWind.BMNGLandsatLayer());
@@ -27,18 +28,13 @@ function App() {
     wwd.addLayer(new WorldWind.CoordinatesDisplayLayer(wwd));
     wwd.addLayer(new WorldWind.ViewControlsLayer(wwd));
 
-
-    // Add a placemark
-    var placemarkLayer = new WorldWind.RenderableLayer("Placemark");
-    wwd.addLayer(placemarkLayer);
     var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
-    
     placemarkAttributes.imageOffset = new WorldWind.Offset(
         WorldWind.OFFSET_FRACTION, 0.3,
         WorldWind.OFFSET_FRACTION, 0.3);
-
     placemarkAttributes.imageScale = 0.08;
     placemarkAttributes.imageColor = WorldWind.Color.YELLOW;
+    placemarkAttributes.labelAttributes.scale = 0.8;
 
     placemarkAttributes.labelAttributes.color = WorldWind.Color.YELLOW;
     placemarkAttributes.labelAttributes.offset = new WorldWind.Offset(
@@ -47,36 +43,25 @@ function App() {
     placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/white-dot.png";
 
     var data = [];
-    //const interval = setInterval(() => {
-      //console.log('This will run every 1 seconds!');
+    const interval = setInterval(() => {
+      console.log('This will run every 1 seconds!');
 
-      if( typeof(window.data) !== 'undefined' ) {
-
+      if(typeof(window.data) !== 'undefined') {
         for (var i = 0; i < window.data.length; i++) {
-          /*
-          for(var j=0; j < data.length; j++){
-            if(data[j].userProperties.id === window.stdata[i].OBJECT_ID){
-              coord = invokeSatellite(window.stdata[i].TLE_LINE1, window.stdata[i].TLE_LINE2);
-              if( typeof(coord.position) !== 'undefined' ) {
-                data[j].position.latitude = coord.position.x;
-                data[j].position.longitude = coord.position.y;
-                data[j].position.altitude = coord.position.z;
+
+          // remove previous placemark (debris)
+          if(typeof(placemarkLayer.renderables) !== 'undefined' && placemarkLayer.renderables.length>0){
+            for(var j=0; j < placemarkLayer.renderables.length; j++){
+              console.log(placemarkLayer.renderables.length);
+              if(placemarkLayer.renderables.at().userProperties.id === window.data[i].OBJECT_ID){
+                placemarkLayer.removeRenderable(placemarkLayer.renderables.at());
               }
-              return;
             }
           }
-          */
-         // var coord = invokeSatellite(window.stdata[i].TLE_LINE1,window.stdata[i].TLE_LINE2);
-
-         
+          
          if(typeof window.data[i].TLE_LINE1 !== 'undefined') {
-           console.log("still moving...")
-           console.log(window.data[i].TLE_LINE1);
-           console.log(window.data[i].TLE_LINE2);
-           
             var satrec = satellite.twoline2satrec(window.data[i].TLE_LINE1, window.data[i].TLE_LINE2);
             var coord = satellite.propagate(satrec, new Date());
-            
             
             if( typeof(coord.position) !== 'undefined' ) {
               var position = new WorldWind.Position(coord.position.x, coord.position.y, coord.position.z);
@@ -90,18 +75,17 @@ function App() {
         
              
               placemarkLayer.addRenderable(placemark);
+              //placemarkLayer.refresh();
+              wwd.redraw();
 
-              console.log("dummy data");
-              //console.log(data);
-
-              //data.push(placemark);
+              //debugger;
             }
           }
         }
       }
 
-    //}, 1000);
-    //return () => clearInterval(interval);
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

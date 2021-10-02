@@ -32,20 +32,6 @@
       // Register an event listener to be called when the page is loaded.
       window.addEventListener("load", eventWindowLoaded, false);
   
-      // Define the event listener to initialize Web WorldWind.
-      function eventWindowLoaded() {
-        
-        
-  
-  
-        function bodyOnloadHandler() {
-                console.log("body onload");
-            }
-
-        window.onload = function(e) {
-            console.log("window loaded");
-        };
-    }
     </script>
   </head>
   <body onload="bodyOnloadHandler()" style="width: 100%; height: auto; background-color: rgba(0, 0, 0, 0.87);">
@@ -66,7 +52,7 @@
       <!--Create a canvas for Web WorldWind.-->
       <canvas id="canvasOne" width="1000" height="1000" style="width: 100%; height: auto; background-color: black;">
         Your browser does not support HTML5 Canvas.
-    </canvas>
+      </canvas>
    </div>
    
   </body>

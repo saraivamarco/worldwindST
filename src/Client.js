@@ -23,14 +23,13 @@ export const getAllItems = () =>
     fetch("https://gorest.co.in/public/v1/users")
         .then(checkStatus);
 
-
 //------
   //https://www.space-track.org/documentation#howto-api_intro
 export const fetchLiveData = ({data, setData}) => {
     const stdata = {
       "identity": "marcoasilvapt@gmail.com",
-      "password": "Spacenuts2021!*",
-      "query": "https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/debris/limit/3"
+      "password": "Spacedebris2021",
+      "query": "https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/debris/limit/10"
     }; //https://www.space-track.org/basicspacedata/query/class/gp/OBJECT_TYPE/DEBRIS
   
     const extra = {
