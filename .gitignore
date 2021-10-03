@@ -1,5 +1,6 @@
 
 # dependencies
+/node_modules
 /.pnp
 .pnp.js
 .next
@@ -27,6 +28,7 @@ yarn-debug.log*
 yarn-error.log*
 .idea/
 .vscode/
+node_modules/
 build
 .DS_Store
 *.tgz

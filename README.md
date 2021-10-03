@@ -3,7 +3,7 @@
 A SpaceTrack client API to provide coordinates of Space debris to WorldWind Web and display these in real time.
 ___
 
-![debris-jpeg](https://github.com/saraivamarco/worldwindST/public/debris.jpeg?raw=true)
+![debris-jpeg](https://github.com/saraivamarco/worldwindST/blob/main/public/debris.jpeg?raw=true)
 
 # Summary
 The increasing amount of debris orbiting Earth could potentially limit our access to space, 
