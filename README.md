@@ -14,6 +14,7 @@ every known debris object orbiting Earth in real time.
 ## Prerequisites  
 Install [Git](https://git-scm.com/downloads)  
 Install [Node.js](https://nodejs.org/en/)  
+Install a CORS browser plugin or Disable Cross-Origin-Restrictions in order to test this demo in your local environment.
 
 ## Clone this project
 
