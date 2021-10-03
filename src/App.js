@@ -5,20 +5,24 @@ import * as WorldWind from "@nasaworldwind/worldwind";
 import { fetchLiveData, fetchDummyData } from './Client';
 
 /**
+ * This application will collect raw data from Space-Track.org in the following format,  
+ * It will transform, thought Satellite.js) the collected data to coordinate values 
+ * that WorldWind Web can understand. 
+ * 
+ * Sample of raw data collected from Space-Track.org
  * TLE_LINE0: "0 YUNHAI 1-02 DEB"
  * @param {*} tle1  TLE_LINE1: "1 49267U 19063AT  21271.01286517  .00004529  00000-0  16332-2 0  9997"
  * @param {*} tle2  TLE_LINE2: "2 49267  98.5535 296.3547 0004348 107.3701 252.8041 14.34111012 27008"
  */
 
 function App() {
-  //const [data, setData] = useState([]);
-  // Create a WorldWindow for the canvas.
-  var wwd = new WorldWind.WorldWindow("canvasOne");
-  // Add a placemark
-  var placemarkLayer = new WorldWind.RenderableLayer("Placemark");
-  wwd.addLayer(placemarkLayer);
-
   useEffect(() => {
+    // Create a WorldWindow for the canvas.
+    var wwd = new WorldWind.WorldWindow("canvasOne");
+    // Add a placemark
+    var placemarkLayer = new WorldWind.RenderableLayer("Placemark");
+    wwd.addLayer(placemarkLayer);
+
     // Add some image layers to the WorldWindow's globe.
     wwd.addLayer(new WorldWind.BMNGOneImageLayer());
     wwd.addLayer(new WorldWind.BMNGLandsatLayer());
@@ -75,10 +79,7 @@ function App() {
         
              
               placemarkLayer.addRenderable(placemark);
-              //placemarkLayer.refresh();
               wwd.redraw();
-
-              //debugger;
             }
           }
         }
